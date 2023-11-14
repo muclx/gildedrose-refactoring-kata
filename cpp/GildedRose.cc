@@ -23,42 +23,37 @@ void GildedRose::updateQuality()
         if (nameItems != nameOne && nameItems != nameTwo && qualityItems > 0 && nameItems != nameThree)
         {
             qualityItems--;
-            if (sellInItems < 0)
-            {
-                qualityItems--;
-            }
-            else
-            {
-                qualityItems = 0;
-            }
         }
         else if (qualityItems < 50)
         {
             qualityItems++;
-            if (nameItems == nameTwo && sellInItems < 11)
+            if (nameItems == nameTwo)
             {
-                qualityItems++;
-            }
-            else if (sellInItems < 6)
-            {
-                qualityItems++;
+                if (sellInItems < 11)
+                {
+                    qualityItems++;
+                }
+                else if (sellInItems < 6)
+                {
+                    qualityItems++;
+                }
             }
         }
-        else if (nameItems != nameThree)
+        if (nameItems != nameThree)
         {
             sellInItems--;
         }
-        else if (sellInItems < 0)
+        if (sellInItems < 0)
         {
             if (nameItems != nameOne && nameItems != nameTwo && qualityItems > 0 && nameItems != nameThree)
             {
                 qualityItems--;
             }
-            else if (nameItems != nameOne && nameItems != nameTwo)
+            if (nameItems != nameOne && nameItems != nameTwo)
             {
                 qualityItems = 0;
             }
-            else if (qualityItems < 50)
+            if (qualityItems < 50)
             {
                 qualityItems++;
             }
