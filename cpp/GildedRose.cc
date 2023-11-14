@@ -1,5 +1,4 @@
 #include "GildedRose.h"
-#include <string>
 
 GildedRose::GildedRose(::std::vector<Item> const &items) : items(items)
 {
@@ -16,46 +15,43 @@ void GildedRose::updateQuality()
         std::string nameOne = "Aged Brie";
         std::string nameTwo = "Backstage passes to a TAFKAL80ETC concert";
         std::string nameThree = "Sulfuras, Hand of Ragnaros";
-        int qualityItems = items[i].quality;
-        int sellInItems = items[i].sellIn;
-        std::string nameItems = items[i].name;
 
-        if (nameItems != nameOne && nameItems != nameTwo && qualityItems > 0 && nameItems != nameThree)
+        if (items[i].name != nameOne && items[i].name != nameTwo && items[i].quality > 0 && items[i].name != nameThree)
         {
-            qualityItems--;
+            items[i].quality--;
         }
-        else if (qualityItems < 50)
+        else if (items[i].quality < 50)
         {
-            qualityItems++;
-            if (nameItems == nameTwo)
+            items[i].quality++;
+            if (items[i].name == nameTwo)
             {
-                if (sellInItems < 11)
+                if (items[i].sellIn < 6)
                 {
-                    qualityItems++;
+                    items[i].quality++;
                 }
-                else if (sellInItems < 6)
+                if (items[i].sellIn < 11)
                 {
-                    qualityItems++;
+                    items[i].quality++;
                 }
             }
         }
-        if (nameItems != nameThree)
+        if (items[i].name != nameThree)
         {
-            sellInItems--;
+            items[i].sellIn--;
         }
-        if (sellInItems < 0)
+        if (items[i].sellIn < 0)
         {
-            if (nameItems != nameOne && nameItems != nameTwo && qualityItems > 0 && nameItems != nameThree)
+            if (items[i].name != nameOne && items[i].name != nameTwo && items[i].quality > 0 && items[i].name != nameThree)
             {
-                qualityItems--;
+                items[i].quality--;
             }
-            if (nameItems != nameOne && nameItems != nameTwo)
+            if (items[i].name == nameTwo)
             {
-                qualityItems = 0;
+                items[i].quality = 0;
             }
-            if (qualityItems < 50)
+            if (items[i].name == nameOne && items[i].quality < 50)
             {
-                qualityItems++;
+                items[i].quality++;
             }
         }
     }
